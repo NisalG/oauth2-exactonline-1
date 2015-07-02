@@ -1,0 +1,39 @@
+{
+  "name": "stephangroen/oauth2-exactonline",
+  "description": "Exact Online OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Stephan Groen",
+      "email": "stephan@picqer.com",
+      "homepage": "https://github.com/stephangroen"
+    }
+  ],
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "client",
+    "authorization",
+    "authorisation",
+    "exact",
+    "exact online"
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "league/oauth2-client": "~1.0dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "mockery/mockery": "~0.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "Stephangroen\\OAuth2\\Client\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Stephangroen\\OAuth2\\Client\\Test\\": "tests/src/"
+    }
+  }
+}
