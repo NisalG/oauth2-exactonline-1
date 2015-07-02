@@ -1,6 +1,6 @@
 <?php
 
-namespace Stephangroen\OAuth2\Client\Provider;
+namespace Picqer\OAuth2\Client\Provider;
 
 use InvalidArgumentException;
 use League\OAuth2\Client\Provider\AbstractProvider;

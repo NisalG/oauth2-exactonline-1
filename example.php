@@ -2,7 +2,7 @@
 
 require_once 'vendor/autoload.php';
 
-$provider = new \Stephangroen\OAuth2\Client\Provider\ExactOnline([
+$provider = new \Picqer\OAuth2\Client\Provider\ExactOnline([
     'clientId'     => '--EXACTCLIENTID--',
     'clientSecret' => '--EXACTCLIENTSECRET--',
     'redirectUri'  => '--CALLBACKURL--'
@@ -18,14 +18,14 @@ if ( ! isset( $_GET['code'] )) {
 } else {
 
     // Try to get an access token (using the authorization code grant)
-    $grant = new \Stephangroen\OAuth2\Client\Grant\ExactOnlineAccessToken;
+    $grant = new \Picqer\OAuth2\Client\Grant\ExactOnlineAccessToken;
     $token = $provider->getAccessToken($grant, $provider->getExactOnlineAccessTokenParams(urldecode($_GET['code'])));
 
     // Optional: Now you have a token you can look up a users profile details
     try {
 
         // We got an access token, let's now get the user's details
-        /** @var Stephangroen\OAuth2\Client\Provider\ExactOnlineUser $userDetails */
+        /** @var Picqer\OAuth2\Client\Provider\ExactOnlineUser $userDetails */
         $userDetails = $provider->getUser($token);
 
         printf('Hello %s!', $userDetails->getFullName());

@@ -1,6 +1,6 @@
 <?php
 
-namespace Stephangroen\OAuth2\Client\Grant;
+namespace Picqer\OAuth2\Client\Grant;
 
 use League\OAuth2\Client\Grant\AbstractGrant;
 

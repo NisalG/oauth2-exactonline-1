@@ -1,4 +1,6 @@
-<?php namespace Stephangroen\OAuth2\Client\Provider;
+<?php
+
+namespace Picqer\OAuth2\Client\Provider;
 
 use League\OAuth2\Client\Provider\UserInterface;
 

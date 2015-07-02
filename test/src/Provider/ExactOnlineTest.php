@@ -5,7 +5,7 @@ namespace Stephangroen\OAuth2\Client\Test\Provider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use Mockery as m;
-use Stephangroen\OAuth2\Client\Provider\ExactOnline;
+use Picqer\OAuth2\Client\Provider\ExactOnline;
 
 class ExactOnlineTest extends \PHPUnit_Framework_TestCase
 {

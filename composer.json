@@ -6,7 +6,7 @@
     {
       "name": "Stephan Groen",
       "email": "stephan@picqer.com",
-      "homepage": "https://github.com/stephangroen"
+      "homepage": "https://github.com/picqer"
     }
   ],
   "keywords": [
@@ -28,12 +28,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Stephangroen\\OAuth2\\Client\\": "src/"
+      "Picqer\\OAuth2\\Client\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Stephangroen\\OAuth2\\Client\\Test\\": "tests/src/"
+      "Picqer\\OAuth2\\Client\\Test\\": "tests/src/"
     }
   }
 }
