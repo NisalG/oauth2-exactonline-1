@@ -26,7 +26,7 @@ if ( ! isset( $_GET['code'] )) {
 
         // We got an access token, let's now get the user's details
         /** @var Picqer\OAuth2\Client\Provider\ExactOnlineUser $userDetails */
-        $userDetails = $provider->getUser($token);
+        $userDetails = $provider->getResourceOwner($token);
 
         printf('Hello %s!', $userDetails->getFullName());
 

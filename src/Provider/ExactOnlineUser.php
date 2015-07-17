@@ -1,14 +1,14 @@
 <?php
 
 namespace Picqer\OAuth2\Client\Provider;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 
-use League\OAuth2\Client\Provider\UserInterface;
 
 /**
  * Class ExactOnlineUser
  * @package Stephangroen\OAuth2\Client\Provider
  */
-class ExactOnlineUser implements UserInterface
+class ExactOnlineUser implements ResourceOwnerInterface
 {
 
     /**
@@ -189,5 +189,15 @@ class ExactOnlineUser implements UserInterface
     private function getField($key)
     {
         return isset( $this->data[$key] ) ? $this->data[$key] : null;
+    }
+
+    /**
+     * Get the identifier of the authorized resource owner.
+     *
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->getUserId();
     }
 }

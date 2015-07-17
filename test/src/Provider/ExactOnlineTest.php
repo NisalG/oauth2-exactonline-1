@@ -7,6 +7,10 @@ use League\OAuth2\Client\Token\AccessToken;
 use Mockery as m;
 use Picqer\OAuth2\Client\Provider\ExactOnline;
 
+/**
+ * Class ExactOnlineTest
+ * @package Stephangroen\OAuth2\Client\Test\Provider
+ */
 class ExactOnlineTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -16,24 +20,32 @@ class ExactOnlineTest extends \PHPUnit_Framework_TestCase
     protected $provider;
 
 
+    /**
+     * Mock the ExactOnline object
+     */
     protected function setUp()
     {
 
         $this->provider = new ExactOnline([
-            'clientId'     => 'mock',
+            'clientId' => 'mock',
             'clientSecret' => 'mock_secret',
-            'redirectUri'  => 'none',
+            'redirectUri' => 'none',
         ]);
     }
 
 
+    /**
+     * Tear down testsuite
+     */
     public function tearDown()
     {
         m::close();
         parent::tearDown();
     }
 
-
+    /**
+     * Test the authorization URL and check required query params
+     */
     public function testGetAuthorizationUrl()
     {
         $url = $this->provider->getAuthorizationUrl();
@@ -49,6 +61,9 @@ class ExactOnlineTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Test getting the access token with expected response
+     */
     public function testGetAccessToken()
     {
         $response = m::mock('Psr\Http\Message\ResponseInterface');
@@ -62,16 +77,19 @@ class ExactOnlineTest extends \PHPUnit_Framework_TestCase
         $this->provider->setHttpClient($client);
 
         /** @var AccessToken $token */
-        $token = $this->provider->getAccessToken('authorization_code', [ 'code' => 'mock_authorization_code' ]);
+        $token = $this->provider->getAccessToken('authorization_code', ['code' => 'mock_authorization_code']);
 
         $this->assertEquals('mock_access_token', $token->getToken());
         $this->assertLessThanOrEqual(time() + 600, $token->getExpires());
         $this->assertGreaterThanOrEqual(time(), $token->getExpires());
         $this->assertEquals('mock_refresh_token', $token->getRefreshToken());
-        $this->assertNull($token->getUid(), 'Exact Online does not return user ID with access token. Expected null.');
+        $this->assertNull($token->getResourceOwnerId(), 'Exact Online does not return user ID with access token. Expected null.');
     }
 
 
+    /**
+     *  Test proper handling of the response Exact Online returns on errors
+     */
     public function testProperlyHandlesErrorResponses()
     {
         $postResponse = m::mock('Psr\Http\Message\ResponseInterface');
@@ -85,7 +103,7 @@ class ExactOnlineTest extends \PHPUnit_Framework_TestCase
         $errorMessage = '';
         $errorCode = 0;
         try {
-            $this->provider->getAccessToken('authorization_code', [ 'code' => 'mock_authorization_code' ]);
+            $this->provider->getAccessToken('authorization_code', ['code' => 'mock_authorization_code']);
         } catch (IdentityProviderException $e) {
             $errorMessage = $e->getMessage();
             $errorCode = $e->getCode();
@@ -94,6 +112,9 @@ class ExactOnlineTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(123, $errorCode);
     }
 
+    /**
+     * Test correct setup of the Exact Online access token params
+     */
     public function testExactOnlineAccessTokenParams()
     {
         $response = $this->provider->getExactOnlineAccessTokenParams('testcode');
