@@ -1,5 +1,5 @@
 {
-  "name": "stephangroen/oauth2-exactonline",
+  "name": "picqer/oauth2-exactonline",
   "description": "Exact Online OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
   "license": "MIT",
   "authors": [
